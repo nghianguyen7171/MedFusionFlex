@@ -36,6 +36,11 @@ class ModelConfig:
     sequence_length: int = 24  # 24 hours of data
     prediction_window: int = 8  # predict next 8 hours
     
+    # Text encoder options
+    text_encoder_type: str = 'clinicalbert'
+    available_encoders: List[str] = None          # list for batch testing
+    encoder_comparison_mode: bool = False         # toggle grid training
+
     def __post_init__(self):
         if self.categorical_dims is None:
             self.categorical_dims = {
@@ -46,13 +51,6 @@ class ModelConfig:
             }
         if self.mlp_hidden_sizes is None:
             self.mlp_hidden_sizes = [256, 128, 64]
-     # NEW ▶ text-encoder options
-    text_encoder_type: str = 'clinicalbert'
-    available_encoders: List[str] = None          # list for batch testing
-    encoder_comparison_mode: bool = False         # toggle grid training
-
-    def __post_init__(self):
-        # existing init code ...
         if self.available_encoders is None:
             self.available_encoders = [
                 'clinicalbert', 'biobert', 'bluebert',

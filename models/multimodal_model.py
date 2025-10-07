@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 from .components import TimeSeriesEncoder, CategoricalEncoder, TextEncoder, MultimodalFusion, FocalLoss, DiceLoss
 from .text_encoders import FlexibleTextEncoder
 
